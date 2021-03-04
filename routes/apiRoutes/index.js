@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { addNote, findById } = require('../../lib/notes');
-const { notes } = require('../../data/notes.json');
+const {notes} = require('../../data/notes.json');
 
 
 
