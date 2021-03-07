@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { addNote, findById } = require('../../lib/notes');
-const {notes} = require('../../data/notes.json');
-
+const notes = require('../../data/notes.json');
+const {nanoid} = require('nanoid');
 
 
 // GET /api/notes -- should read the notes.json file and return all saved notes as JSON
@@ -17,15 +17,14 @@ router.get('/notes/:id', (req, res) => {
     } else {
       res.send(404);
     }
-  });
+});
 
 // POST /api/notes -- should receive a new note to save on the request body, add it to the notes.json file, and then return the new note to the client.
 router.post('/notes', (req, res) => {
-    // set id based on what the next index of the array will be
-    req.body.id = notes.length.toString();
-
-    const note = addNote(req.body, notes);
-    res.json(note);
+  // set id based on what the next index of the array will be
+  req.body.id = nanoid();
+  const note = addNote(req.body, notes);
+  res.json(note);
 });
 
 module.exports = router;
