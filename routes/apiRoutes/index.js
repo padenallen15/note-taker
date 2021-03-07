@@ -11,7 +11,7 @@ router.get('/notes', (req, res) => {
   
 // returns a specific note
 router.get('/notes/:id', (req, res) => {
-    const result = findById(req.params.id, animals);
+    const result = findById(req.params.id, notes);
     if (result) {
       res.json(result);
     } else {
