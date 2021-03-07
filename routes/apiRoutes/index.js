@@ -13,7 +13,8 @@ router.get('/notes', (req, res) => {
 router.delete('/notes/:id', (req, res) => {
     const result = findById(req.params.id, notes);
     if (result) {
-      deleteNote(result, notes)
+      deleteNote(req.params.id, notes)
+      res.json(notes);
     } else {
       res.send(404);
     }
