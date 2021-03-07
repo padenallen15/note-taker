@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { addNote, findById } = require('../../lib/notes');
+const { addNote, findById, deleteNote } = require('../../lib/notes');
 const notes = require('../../data/notes.json');
 // used to assign random id to note
 const {nanoid} = require('nanoid');
@@ -10,7 +10,7 @@ router.get('/notes', (req, res) => {
 });
   
 // deletes a note
-router.get('/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
     const result = findById(req.params.id, notes);
     if (result) {
       deleteNote(result, notes)
